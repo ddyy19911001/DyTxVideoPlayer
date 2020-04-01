@@ -4,15 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.tencent.liteav.demo.play.MySuperVideoView;
+import com.tencent.liteav.demo.play.SuperPlayerModel;
 
 public class MainActivity extends AppCompatActivity {
     private RelativeLayout fmTop;
     private MySuperVideoView videoView;
-    private ImageView mIvPlay;
+    private FrameLayout mIvPlay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private void findView() {
         fmTop = (RelativeLayout) findViewById(R.id.fm_top);
         videoView = (MySuperVideoView) findViewById(R.id.video_view);
-        mIvPlay = (ImageView) findViewById(R.id.m_iv_play);
+        mIvPlay = (FrameLayout) findViewById(R.id.fm_iv_play);
     }
 
     /**
@@ -38,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 if(videoView.getmVodPlayer()!=null&&videoView.getmVodPlayer().getPlayableDuration()>0){
                     videoView.onResume();
                 }else {
-                    videoView.startPlay("https://youku.cdn7-okzy.com/20200313/17725_bd26d414/index.m3u8");
+                    SuperPlayerModel superPlayerModel=new SuperPlayerModel();
+                    superPlayerModel.url="https://youku.cdn7-okzy.com/20200313/17725_bd26d414/index.m3u8";
+                    superPlayerModel.title="";
+                    videoView.playWithModel(superPlayerModel);
                 }
                 mIvPlay.setVisibility(View.GONE);
             }
@@ -49,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
             if(videoView.getmVodPlayer()!=null&&videoView.getmVodPlayer().getPlayableDuration()>0){
                 videoView.onResume();
             }else {
-                videoView.startPlay("https://youku.cdn7-okzy.com/20200313/17725_bd26d414/index.m3u8");
+                SuperPlayerModel superPlayerModel=new SuperPlayerModel();
+                superPlayerModel.url="https://youku.cdn7-okzy.com/20200313/17725_bd26d414/index.m3u8";
+                superPlayerModel.title="";
+                videoView.playWithModel(superPlayerModel);
             }
         }
     }
