@@ -244,6 +244,7 @@ public class MySuperVideoView extends RelativeLayout implements ITXVodPlayListen
     }
 
     private void initView(Context context) {
+        setKeepScreenOn(true);
         this.mContext = context;
         this.mRootView = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.super_vod_player_view, (ViewGroup)null);
         this.mTXCloudVideoView = this.mRootView.findViewById(R.id.cloud_video_view);
